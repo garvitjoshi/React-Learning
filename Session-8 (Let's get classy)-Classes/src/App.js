@@ -7,13 +7,14 @@ import {
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import AboutUs from "./components/aboutUs";
+import AboutUsComponent from "./components/AboutUsComponent";
 import CardComponent from "./components/CardComponent";
 import ErrorComponent from "./components/errorComponent";
 import NoResultsComponent from "./components/NoResultsComponent";
+import ProfileComponent from "./components/ProfileComponent";
 import ReactDOM from "react-dom/client";
 import RestaurantComponent from "./components/RestrauntComponent";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/SearchBarComponent";
 import { title } from "./utils/constants";
 
 // import * as constants from "./constants";
@@ -78,7 +79,9 @@ const SearchPageComponent = () => {
 const AppLayout = () => (
   <>
     <HeadingComponent />
-    <Outlet />
+    <div className="body">
+      <Outlet />
+    </div>
   </>
 );
 
@@ -96,11 +99,17 @@ const appRouter = createBrowserRouter([
         path: "/search",
         element: <SearchPageComponent />,
       },
+      {
+        path: "/about-us",
+        element: <AboutUsComponent />,
+        children: [
+          {
+            path: "profile",
+            element: <ProfileComponent name={"Garvit"} />,
+          },
+        ],
+      },
     ],
-  },
-  {
-    path: "/about-us",
-    element: <AboutUs />,
   },
 ]);
 
