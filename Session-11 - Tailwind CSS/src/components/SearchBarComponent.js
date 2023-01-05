@@ -10,17 +10,14 @@ const searchRestaunt = (searchText, listOfRestaurants) => {
   );
 };
 
-const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
+const SearchBar = ({ listOfRestaurants, setFilteredRestaurants, fn }) => {
   const [searchText, setSearchText] = useState("");
   const [stateName, setStateName] = useState("Rajasthan");
   const [cityName, setCityName] = useState("");
 
   const cityList = useCities(stateName);
-
-  console.log(cityList);
-
   return (
-    <div className="search">
+    <div className="m-5 p-5 bg-purple-50">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -43,6 +40,7 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
           value={stateName}
           onChange={(e) => {
             setStateName(e.target.value);
+            fn(e.target.value);
           }}
         >
           {Object.keys(stateObj).map((state) => (
@@ -63,7 +61,9 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
             </option>
           ))}
         </select>
-        <button>Search</button>
+        <button className="bg-green-800 p-2 mx-5 text-white rounded-xl">
+          Search
+        </button>
       </form>
     </div>
   );
