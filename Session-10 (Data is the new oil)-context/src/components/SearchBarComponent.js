@@ -10,7 +10,7 @@ const searchRestaunt = (searchText, listOfRestaurants) => {
   );
 };
 
-const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
+const SearchBar = ({ listOfRestaurants, setFilteredRestaurants, fn }) => {
   const [searchText, setSearchText] = useState("");
   const [stateName, setStateName] = useState("Rajasthan");
   const [cityName, setCityName] = useState("");
@@ -43,6 +43,7 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
           value={stateName}
           onChange={(e) => {
             setStateName(e.target.value);
+            fn(e.target.value);
           }}
         >
           {Object.keys(stateObj).map((state) => (

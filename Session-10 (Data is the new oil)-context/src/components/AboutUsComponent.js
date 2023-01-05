@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import React from "react";
+import UserContext from "./UserContext";
 
 // const AboutUs = () => {
 //   return (
@@ -28,6 +29,22 @@ class AboutUsComponent extends React.Component {
     console.log("About-render");
     return (
       <>
+        <UserContext.Consumer>
+          {({ email, setEmail }) => {
+            return (
+              <>
+                <h4>About us context: {email}</h4>
+                <button
+                  onClick={() => {
+                    setEmail("aboutus@email.com");
+                  }}
+                >
+                  updateEmail
+                </button>
+              </>
+            );
+          }}
+        </UserContext.Consumer>
         <h1>Class About Us</h1>
         <Outlet />
       </>

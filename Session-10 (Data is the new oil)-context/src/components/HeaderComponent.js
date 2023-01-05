@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import UserContext from "./UserContext";
 import { title } from "../utils/constants";
 
 const HeadingComponent = () => {
@@ -14,6 +15,11 @@ const HeadingComponent = () => {
       <Link to="/About-us">
         <span>About-us</span>
       </Link>
+      <UserContext.Consumer>
+        {({ email }) => {
+          return <span>{email}</span>;
+        }}
+      </UserContext.Consumer>
     </div>
   );
 };
