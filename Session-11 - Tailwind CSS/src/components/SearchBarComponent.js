@@ -16,11 +16,8 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants, fn }) => {
   const [cityName, setCityName] = useState("");
 
   const cityList = useCities(stateName);
-
-  console.log(cityList);
-
   return (
-    <div className="search">
+    <div className="m-5 p-5 bg-purple-50">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -64,7 +61,9 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants, fn }) => {
             </option>
           ))}
         </select>
-        <button>Search</button>
+        <button className="bg-green-800 p-2 mx-5 text-white rounded-xl">
+          Search
+        </button>
       </form>
     </div>
   );
