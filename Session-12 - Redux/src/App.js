@@ -4,11 +4,13 @@ import { Suspense, lazy, useState } from "react";
 import ErrorComponent from "./components/ErrorComponent";
 import HeadingComponent from "./components/HeaderComponent";
 import ProfileComponent from "./components/ProfileComponent";
+import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import RestaurantComponent from "./components/RestrauntComponent";
 import SearchPageComponent from "./components/SearchPageComponent";
 import ThemeContext from "./components/ThemeContext";
 import UserContext from "./components/UserContext";
+import store from "./components/store";
 
 // import AboutUsComponent from "./components/AboutUsComponent";
 
@@ -22,14 +24,18 @@ const AppLayout = () => {
   return (
     <>
       {/* Context Provider */}
-      <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
-        <UserContext.Provider value={{ email: emailId, setEmail: setEmailId }}>
-          <HeadingComponent />
-          <div className="body">
-            <Outlet />
-          </div>
-        </UserContext.Provider>
-      </ThemeContext.Provider>
+      <Provider store={store}>
+        <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
+          <UserContext.Provider
+            value={{ email: emailId, setEmail: setEmailId }}
+          >
+            <HeadingComponent />
+            <div className="body">
+              <Outlet />
+            </div>
+          </UserContext.Provider>
+        </ThemeContext.Provider>
+      </Provider>
     </>
   );
 };

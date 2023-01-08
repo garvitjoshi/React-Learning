@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 import CardComponent from "./CardComponent";
+import { addItem } from "./cartSlice";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const RestrauntComponent = () => {
@@ -20,7 +22,24 @@ const RestrauntComponent = () => {
     setResInfo(json);
   }
 
-  return <CardComponent restraunt={resInfo} />;
+  const dispatch = useDispatch();
+
+  const addCartItem = () => {
+    dispatch(
+      addItem({
+        name: "pizza",
+      })
+    );
+  };
+
+  return (
+    <>
+      <CardComponent restraunt={resInfo} />
+      <button className="font-bold m-5 p-5 bg-green-50" onClick={addCartItem}>
+        Add Item to cart
+      </button>
+    </>
+  );
 };
 
 export default RestrauntComponent;

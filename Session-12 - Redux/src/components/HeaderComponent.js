@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import UserContext from "./UserContext";
 import { title } from "../utils/constants";
+import { useSelector } from "react-redux";
 
 const HeadingComponent = () => {
+  const cartItems = useSelector((store) => store.cart.value);
+
+  const count = cartItems.length;
+
+  console.log("cartItems", cartItems);
+
   return (
     <div
       id="title"
@@ -27,8 +34,8 @@ const HeadingComponent = () => {
         <Link to="/About-us">
           <span>Contact us</span>
         </Link>
-        <Link to="/About-us">
-          <span>Support</span>
+        <Link to="/cart">
+          <span>Cart- {count} items</span>
         </Link>
       </div>
     </div>
